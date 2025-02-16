@@ -42,7 +42,9 @@ _(TODO: Explain how to include the library in project – e.g., via Maven, or as
 
 ```java
 import arunsah.lbs.BinaryInput;
+import arunsah.lbs.BinaryInputImpl;
 import arunsah.lbs.BinaryOutput;
+import arunsah.lbs.BinaryOutputImpl;
 import arunsah.lbs.FieldHeader;
 import arunsah.lbs.FieldType;
 
@@ -55,7 +57,7 @@ public class SimpleExample {
         ByteBuffer buffer = ByteBuffer.allocate(20);
 
         // Create an instance of BinaryOutput with BIG_ENDIAN byte order.
-        BinaryOutput out = BinaryOutput.bigEndianOutput(buffer);
+        BinaryOutput out = BinaryOutputImpl.bigEndianOutput(buffer);
 
         // Serialize data (for example, a simple int field and a string field).
         out.writeFieldHeader(FieldType.INT8, 1).writeInt8((byte) 100);
@@ -75,7 +77,7 @@ public class SimpleExample {
         System.out.println(hexValue);
 
         // Create an instance of BinaryInput.
-        BinaryInput in = BinaryInput.bigEndianInput(buffer);
+        BinaryInput in = BinaryInputImpl.bigEndianInput(buffer);
 
         // Read back the fields.
         FieldHeader header = in.readFieldHeader();
